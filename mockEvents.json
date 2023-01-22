@@ -1,0 +1,87 @@
+[  
+{
+"id":"11",
+"category":"Conferences",
+"title":"Tech Fest Canada 2022",
+"desc":"The gathering of the tech gurus and enthusiast, the place to meet seasoned developers",
+"location":"Port Harcourt",
+"startDate":"12 April 2022",
+"endDate":"12 April 2022",
+"time":"12:34 PM",
+"price":"50",
+"information":"Event technology is evolving faster than ever before—and for good reason. Today, 90% of event professionals agree that technology can have a positive impact on the success of their events. With the rise of virtual events and hybrid events, many teams recognize that the right tech solutions can take their event experience to a whole new level. In fact, one study even found that event technology can increase event attendance by 20 percent and productivity by 27 percent. ",
+"image":"https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"},
+{
+"id":"12",
+"category":"Music",
+"title":"Music Carnival 2022",
+"desc":"The gathering of the tech gurus and enthusiast, the place to meet seasoned developers",
+"location":"Port Harcourt",
+"startDate":"12 April 2022",
+"endDate":"12 April 2022",
+"time":"12:34 PM",
+"price":"50",
+"information":"Event technology is evolving faster than ever before—and for good reason. Today, 90% of event professionals agree that technology can have a positive impact on the success of their events. With the rise of virtual events and hybrid events, many teams recognize that the right tech solutions can take their event experience to a whole new level. In fact, one study even found that event technology can increase event attendance by 20 percent and productivity by 27 percent. ",
+"image":"https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+},
+{
+"id":"13",
+"category":"Music",
+"title":"The Music Concert 2022",
+"desc":"The gathering of the tech gurus and enthusiast, the place to meet seasoned developers",
+"location":"Port Harcourt",
+"startDate":"12 April 2022",
+"endDate":"12 April 2022",
+"time":"12:34 PM",
+"price":"50",
+"information":"Event technology is evolving faster than ever before—and for good reason. Today, 90% of event professionals agree that technology can have a positive impact on the success of their events. With the rise of virtual events and hybrid events, many teams recognize that the right tech solutions can take their event experience to a whole new level. In fact, one study even found that event technology can increase event attendance by 20 percent and productivity by 27 percent. ",
+"image":"https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+},
+{
+"id":"14",
+"category":"Music",
+"title":"The Great Orchestra Concert",
+"desc":"The gathering of the tech gurus and enthusiast, the place to meet seasoned developers",
+"location":"Port Harcourt",
+"startDate":"12 April 2022",
+"endDate":"12 April 2022",
+"time":"12:34 PM",
+"price":"50",
+"information":"Event technology is evolving faster than ever before—and for good reason. Today, 90% of event professionals agree that technology can have a positive impact on the success of their events. With the rise of virtual events and hybrid events, many teams recognize that the right tech solutions can take their event experience to a whole new level. In fact, one study even found that event technology can increase event attendance by 20 percent and productivity by 27 percent. ",
+"image":"https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+},
+{
+"id":"15",
+"category":"Blockchain",
+"title":"Blockchain Summit",
+"desc":"The gathering of the tech gurus and enthusiast, the place to meet seasoned developers",
+"location":"Port Harcourt",
+"startDate":"12 April 2022",
+"endDate":"12 April 2022",
+"time":"12:34 PM",
+"price":"50",
+"information":"Event technology is evolving faster than ever before—and for good reason. Today, 90% of event professionals agree that technology can have a positive impact on the success of their events. With the rise of virtual events and hybrid events, many teams recognize that the right tech solutions can take their event experience to a whole new level. In fact, one study even found that event technology can increase event attendance by 20 percent and productivity by 27 percent. ",
+"image":"https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+},
+{
+"id":"16",
+"category":"Tech",
+"title":"Tech Fest Canada 2023",
+"desc":"The gathering of the tech gurus and enthusiast, the place to meet seasoned developers",
+"location":"Port Harcourt",
+"startDate":"12 April 2022",
+"endDate":"12 April 2022",
+"time":"12:34 PM",
+"price":"50",
+"information":"Event technology is evolving faster than ever before—and for good reason. Today, 90% of event professionals agree that technology can have a positive impact on the success of their events. With the rise of virtual events and hybrid events, many teams recognize that the right tech solutions can take their event experience to a whole new level. In fact, one study even found that event technology can increase event attendance by 20 percent and productivity by 27 percent. ",
+"image":"https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+},
+{
+"id":"e4f06f6a-9611-7841-92a4-19b7c77c5b9b",
+"title":"import uuid from 'react-uuid'",
+"category":"Concerts",
+"desc":"import uuid from 'react-uuid'",
+"information":"import uuid from 'react-uuid'import uuid from 'react-uuid'import uuid from 'react-uuid'import uuid from 'react-uuid'",
+"image":"ipfs://QmNRWoG9z3Awi4KKvLSrThmrF8gdQs5tfxqb4oBXv5mfF4"
+}
+]
