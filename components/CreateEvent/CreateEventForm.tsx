@@ -11,18 +11,25 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 import React, { useCallback, useRef, useState } from 'react';
-import Layout from '../Layout/Layout';
-import WrapContent from '../WrapContent';
+
 import { FaFileUpload } from 'react-icons/fa';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import uuid from 'react-uuid';
 import { categories } from '../../mockData';
-import { useCtx } from '../../context/AppContext';
+import { useApp } from '../../context/AppContext';
+import { useWeb3 } from '../../context/Web3Context';
+import MainLayout from '../Layouts/MainLayout';
+import WrapContent from '../Layouts/components/WrapContent';
+
+const pinataSecret: string | undefined =
+  process.env.NEXT_PUBLIC_PINATA_API_SECRET;
+const pinataKey: string | undefined = process.env.NEXT_PUBLIC_PINATA_API_KEY;
 
 function CreateEventForm({ submitMetadata }: any) {
-  const { client, GetAllEvents }: any = useCtx();
+  const { GetAllEvents }: any = useApp();
+  const { client }: any = useWeb3();
   const [uploadData, setUpload] = useState({
     name: '',
     size: 0,
@@ -32,6 +39,9 @@ function CreateEventForm({ submitMetadata }: any) {
   const [imgHash, setImgHash] = useState<string | null>(null);
   const barRef = useRef<HTMLDivElement>(null);
 
+  /*
+  upload image to ipfs
+  */
   const onDrop = useCallback(async (files: File[]) => {
     //const byte = files[0].size;
     setUpload({
@@ -48,8 +58,8 @@ function CreateEventForm({ submitMetadata }: any) {
         url: 'https://api.pinata.cloud/pinning/pinFileToIPFS',
         data: formData,
         headers: {
-          pinata_api_key: `${process.env.NEXT_PUBLIC_PINATA_API_KEY}`,
-          pinata_secret_api_key: `${process.env.NEXT_PUBLIC_PINATA_API_SECRET}`,
+          pinata_api_key: pinataKey!.toString(),
+          pinata_secret_api_key: pinataSecret!.toString(),
           'Content-Type': 'multipart/form-data',
         },
         onUploadProgress(progressEvent) {
@@ -70,6 +80,13 @@ function CreateEventForm({ submitMetadata }: any) {
     }
   }, []);
 
+  /*
+  END OF upload image to ipfs
+  */
+
+  /*
+  Submit METADATA to ipfs
+  */
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     if (!client) return toast.error('connect wallet first');
@@ -103,11 +120,10 @@ function CreateEventForm({ submitMetadata }: any) {
       image: imgHash,
       location: location.value,
       price: price.value,
+      chainId: client.chainId,
     };
 
     let ref = await submitMetadata(data);
-
-    // const ref = await axios.post('/api/saveEvent', { ...data });
     if (ref) {
       alert('posted!');
       window.document.forms[0].reset();
@@ -125,11 +141,14 @@ function CreateEventForm({ submitMetadata }: any) {
     }
     setLoading(false);
   };
+  /*
+ END OF Submit METADATA to ipfs
+  */
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <Layout title='Create events on Evema'>
+    <MainLayout title='Create events on Evema'>
       <Box bg='gray.50' py='5'>
         <WrapContent>
           <Box>
@@ -271,7 +290,7 @@ function CreateEventForm({ submitMetadata }: any) {
           </Stack>
         </WrapContent>
       </Box>
-    </Layout>
+    </MainLayout>
   );
 }
 

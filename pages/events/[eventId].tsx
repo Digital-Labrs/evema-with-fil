@@ -16,9 +16,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { BsCashCoin } from 'react-icons/bs';
 import { FiCalendar, FiMapPin } from 'react-icons/fi';
+import ProgressiveImage from 'react-progressive-graceful-image';
 import BuyTicketButton from '../../components/Events/BuyTicketButton';
 import WrapContent from '../../components/Layouts/components/WrapContent';
 import MainLayout from '../../components/Layouts/MainLayout';
+import { NETWORKS } from '../../config/networks';
+
+const apiKey = process.env.NEXT_PUBLIC_ALCHEMY_KEY;
 
 export const formatDate = (date: any) => {
   let d = new Date(BigNumber.from(date).toNumber());
@@ -50,7 +54,6 @@ function SingleEvent(props: any) {
         'https://gateway.pinata.cloud/ipfs/' + d['metadata']
       );
       setData(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
       toast.error('error occurred');
@@ -58,24 +61,33 @@ function SingleEvent(props: any) {
   }, []);
 
   const fetchItem = useCallback(async () => {
-    let rpc =
-      'https://polygon-mumbai.g.alchemy.com/v2/qc55QhaO9Id1jIXvfxbS-bisfiYT-41T';
+    let rpc: string = 'https://polygon-mumbai.g.alchemy.com/v2/' + apiKey;
+
+    if (query.chain === '3141') {
+      rpc = 'https://api.hyperspace.node.glif.io';
+    }
+
+    const current_network: any = Object.values(NETWORKS).filter(
+      (entry: any) => {
+        return entry.chainId === Number(query.chain);
+      }
+    );
+
     const provider = new ethers.providers.JsonRpcProvider(rpc);
-    const signer = provider.getSigner();
     // @ts-ignore
-    let ca = CONTRACT.polygon_mumbai.ca;
+    let ca = current_network[0].ca;
     // @ts-ignore
-    let abi = CONTRACT.polygon_mumbai.abi;
+    let abi = current_network[0].abi;
     const ct = new ethers.Contract(ca, abi, provider);
-
     let d = await ct.getEventByIds(query.eventId);
-
     setEvent(d);
     fetchMetadata(d);
   }, [query, fetchMetadata]);
 
   useEffect(() => {
-    fetchItem();
+    if (query && query.chain) {
+      fetchItem();
+    }
   }, [fetchItem, query]);
 
   return (
@@ -127,22 +139,10 @@ function SingleEvent(props: any) {
                     {event && formatDate(event['endSales'])}
                   </Text>
                 </Box>
-                {/* <Box>
-                  <HStack py='1'>
-                    <Box color='#f24726' fontSize='xs'>
-                      <FiClock />
-                    </Box>
-                    <Text as='small' fontWeight='bold' fontSize='xs'>
-                      Start time
-                    </Text>
-                  </HStack>
-                  <Text fontSize='xl'>
-                    {event && formatTime(event['startTime'])}
-                  </Text>
-                </Box> */}
               </SimpleGrid>
               <HStack gap='5'>
                 <BuyTicketButton
+                  chain={Number(query.chain)}
                   id={event ? event['eventId'] : null}
                   price={data.price}
                 />
@@ -174,13 +174,29 @@ function SingleEvent(props: any) {
                   {data.category}
                 </Badge>
 
-                <Image
-                  src={data.image}
-                  alt={data.title}
-                  h='100%'
-                  w='full'
-                  objectFit={'cover'}
-                />
+                <ProgressiveImage src={data.image} placeholder='tiny-image.jpg'>
+                  {(src, loading) => {
+                    return loading ? (
+                      <Image
+                        alt={''}
+                        className='progressive-image'
+                        src={'/images/placeholder.png'}
+                        h='100%'
+                        w='full'
+                        objectFit={'cover'}
+                      />
+                    ) : (
+                      <Image
+                        alt={data.title}
+                        className='progressive-image'
+                        src={src}
+                        h='100%'
+                        w='full'
+                        objectFit={'cover'}
+                      />
+                    );
+                  }}
+                </ProgressiveImage>
               </Box>
               <Box>
                 <Text fontSize='xl' as='h1' className='capitalize py-5'>

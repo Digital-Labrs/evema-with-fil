@@ -42,7 +42,7 @@ function SwitchNetworkModal({
                         {n.title}
                       </Text>
                       <Button
-                        onClick={() => switchNetworks(n)}
+                        onClick={() => switchNetworks(n.chainId)}
                         leftIcon={<HiSwitchHorizontal />}
                       >
                         Switch

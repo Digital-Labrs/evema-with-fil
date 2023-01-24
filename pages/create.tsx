@@ -2,14 +2,16 @@ import axios from 'axios';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import CreateEventForm from '../components/CreateEvent/CreateEventForm';
-import { getSignedMaticContract } from '../metamaskFunctions';
+import { useWeb3 } from '../context/Web3Context';
+import { getSignedContract } from '../metamaskFunctions';
 
 function Create() {
   const [metaHash, setMetaHash] = useState(false);
+  const { client }: any = useWeb3();
 
   const submitEventToBlockChain = async (hash: string, data: any) => {
     try {
-      let ctx = getSignedMaticContract();
+      let ctx = getSignedContract(client.chainId);
       console.log(data);
       let res = await ctx.createEvent(
         data.seats,
@@ -18,6 +20,8 @@ function Create() {
         data.price,
         hash
       );
+      console.log('res---------', res);
+
       toast.success('Event submitted to blockchain, transaction in progress');
       return 'Done';
     } catch (error) {

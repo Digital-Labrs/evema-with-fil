@@ -36,7 +36,7 @@ export default function Web3ContextProvider({ children }: { children: any }) {
           break;
 
         default:
-          switchNetworks(network);
+          switchNetworks(network.chainId);
           break;
       }
     }

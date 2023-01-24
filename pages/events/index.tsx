@@ -2,16 +2,16 @@ import { Box, Center, Icon, SimpleGrid, Text } from '@chakra-ui/react';
 import { BigNumber } from 'ethers';
 import React from 'react';
 import { FaExclamation } from 'react-icons/fa';
-import EventsComponent from '../../components/EventsComponent';
-import Layout from '../../components/Layout/Layout';
-import WrapContent from '../../components/WrapContent';
-import { useCtx } from '../../context/AppContext';
+import EventsComponent from '../../components/Events/EventsComponent';
+import WrapContent from '../../components/Layouts/components/WrapContent';
+import MainLayout from '../../components/Layouts/MainLayout';
+import { useApp } from '../../context/AppContext';
 
 function Events() {
-  const { events }: any = useCtx();
+  const { events }: any = useApp();
 
   return (
-    <Layout title='All events on Evema'>
+    <MainLayout title='All events on Evema'>
       <WrapContent>
         <Box py='5'>
           <Text px='2' fontSize='xl' as='h1' className='capitalize py-5'>
@@ -37,7 +37,7 @@ function Events() {
           )}
         </Box>
       </WrapContent>
-    </Layout>
+    </MainLayout>
   );
 }
 

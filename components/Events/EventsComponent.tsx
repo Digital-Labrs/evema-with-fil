@@ -18,13 +18,18 @@ const EventsComponent = ({ event }: { event: any }) => {
     information: '',
     image: '',
     price: '0',
+    chainId: '0',
   });
 
+  const eventId = BigNumber.from(event['eventId']).toNumber();
   const fetchMetadata = useCallback(async () => {
+    const url = 'https://gateway.pinata.cloud/ipfs/' + event['metadata'];
     try {
-      let { data } = await axios.get(
-        'https://gateway.pinata.cloud/ipfs/' + event['metadata']
-      );
+      let { data } = await axios.get(url, {
+        headers: {
+          Accept: 'text/plain',
+        },
+      });
       setData(data);
     } catch (error) {
       console.log(error);
@@ -61,7 +66,7 @@ const EventsComponent = ({ event }: { event: any }) => {
           {data.desc}
         </Text>
       </Box>
-      <Link href={'/events/' + BigNumber.from(event['eventId']).toNumber()}>
+      <Link href={`/events/${eventId}?chain=${data.chainId}`}>
         <Button colorScheme='twitter' size='sm' alignSelf={'center'} py='3'>
           Book Now!
         </Button>

@@ -5,19 +5,19 @@ import { toast } from 'react-hot-toast';
 const matic_chain_id = 80001;
 const fil_chain_id = 3141;
 
-const switchWeb3Network = async (network: any) => {
+const switchWeb3Network = async (network: string) => {
     const { ethereum }: any = window;
     const accounts = await ethereum.request({ method: 'eth_accounts' });
 
     try {
         await ethereum.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: `0x${Number(network.chainId).toString(16)}` }],
+            params: [{ chainId: `0x${Number(network).toString(16)}` }],
         });
     } catch (switchError: any) {
         if (switchError.code === 4902 || switchError.code === 32603) {
             let selected_chain = Object.values(networks).filter((entry: any) => {
-                return entry.chainId === `0x${Number(network.chainId).toString(16)}`
+                return entry.chainId === `0x${Number(network).toString(16)}`
             })
             try {
                 await ethereum.request({
@@ -36,20 +36,20 @@ const switchWeb3Network = async (network: any) => {
     return {
         isConnected: true,
         address: accounts[0],
-        network: network.chainId,
+        network: network,
     };
 }
 
 const checkConnection = async (setClient: any) => {
-    
+
     const { ethereum }: any = window;
 
     if (ethereum) {
-        const accounts = await ethereum.request({ method: 'eth_accounts' });  
+        const accounts = await ethereum.request({ method: 'eth_accounts' });
         let chainId = parseInt(ethereum.chainId)
-        const current_network =    Object.values(SUPPORTED_NETWORKS).filter((entry: any) => {
-                return entry.chainId === chainId
-            }) 
+        const current_network: any = Object.values(SUPPORTED_NETWORKS).filter((entry: any) => {
+            return entry.chainId === chainId
+        })
         if (accounts.length > 0) {
             return setClient({
                 isConnected: true,
@@ -75,8 +75,7 @@ const connectWeb3 = async () => {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const accounts = await provider.send('eth_requestAccounts', []);
         let network_details = await provider.getNetwork();
-        console.log(network_details);
-        
+
         return {
             isConnected: true,
             address: accounts[0],
@@ -91,16 +90,34 @@ const connectWeb3 = async () => {
     }
 };
 
-const getSignedMaticContract = () => {
+// const getSignedMaticContract = () => {
+//     const { ethereum }: any = window;
+//     const provider = new ethers.providers.Web3Provider(ethereum);
+//     const signer = provider.getSigner();
+//     // @ts-ignore
+//     let ca = NETWORKS.polygon_mumbai.ca;
+//     // @ts-ignore
+//     let abi = NETWORKS.polygon_mumbai.abi;
+//     const ct = new ethers.Contract(ca, abi, provider);
+//     let signed = ct.connect(signer);
+//     return signed;
+// };
+const getSignedContract = (chainId: any) => {
+    const current_network: any = Object.values(SUPPORTED_NETWORKS).filter((entry: any) => {
+        return entry.chainId === chainId
+    })
     const { ethereum }: any = window;
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
+
     // @ts-ignore
-    let ca = NETWORKS.polygon_mumbai.ca;
+    let ca = current_network[0].ca;
     // @ts-ignore
-    let abi = NETWORKS.polygon_mumbai.abi;
+    let abi = current_network[0].abi;
+
     const ct = new ethers.Contract(ca, abi, provider);
     let signed = ct.connect(signer);
+
     return signed;
 };
 
@@ -157,7 +174,7 @@ const networks = {
 export {
     checkConnection,
     connectWeb3,
-    getSignedMaticContract,
+    getSignedContract,
     fil_chain_id,
     matic_chain_id,
     networks,

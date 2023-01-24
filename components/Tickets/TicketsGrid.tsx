@@ -3,7 +3,8 @@ import axios from 'axios';
 import { BigNumber } from 'ethers';
 import React, { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { getSignedMaticContract } from '../metamaskFunctions';
+import { useWeb3 } from '../../context/Web3Context';
+import { getSignedContract } from '../../metamaskFunctions';
 
 function TicketsGrid({ nft }: any) {
   return (
@@ -18,6 +19,8 @@ function TicketsGrid({ nft }: any) {
 export default TicketsGrid;
 
 const Ticket = ({ data }: any) => {
+  const { client }: any = useWeb3();
+
   const [NFTData, setNFTData] = useState<any>(null);
 
   const fetchMetadata = async (uri: any) => {
@@ -27,7 +30,6 @@ const Ticket = ({ data }: any) => {
         'https://gateway.pinata.cloud/ipfs/' + uri
       );
       setNFTData(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
       toast.error('error occurred');
@@ -42,7 +44,7 @@ const Ticket = ({ data }: any) => {
   };
 
   const getNFTHash = useCallback(async (data: any) => {
-    let res = await getSignedMaticContract().tokenURI(
+    let res = await getSignedContract(client.chainId).tokenURI(
       BigNumber.from(data).toNumber()
     );
     fetchMetadata(res);

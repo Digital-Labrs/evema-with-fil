@@ -99,6 +99,116 @@
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "creator",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "time",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "eventId",
+				"type": "uint256"
+			}
+		],
+		"name": "newEventCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "eventId",
+				"type": "uint256"
+			}
+		],
+		"name": "newTicketBooked",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "allEvents",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "metadata",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "eventId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticketsBought",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "max_ticket",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticket_price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endSales",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "eventPast",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Evema.EventData[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -175,6 +285,11 @@
 			},
 			{
 				"internalType": "uint256",
+				"name": "eventId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
 				"name": "ticketsBought",
 				"type": "uint256"
 			},
@@ -197,6 +312,11 @@
 				"internalType": "uint256",
 				"name": "endSales",
 				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "eventPast",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -238,6 +358,72 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "createdEvents",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "metadata",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "eventId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticketsBought",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "max_ticket",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticket_price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endSales",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "eventPast",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Evema.EventData[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
@@ -254,6 +440,11 @@
 				"internalType": "string",
 				"name": "metadata",
 				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "eventId",
+				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
@@ -279,6 +470,77 @@
 				"internalType": "uint256",
 				"name": "endSales",
 				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "eventPast",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "eventsBookedByUser",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "metadata",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "eventId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticketsBought",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "max_ticket",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticket_price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endSales",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "eventPast",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Evema.EventData[]",
+				"name": "",
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
@@ -325,6 +587,11 @@
 			},
 			{
 				"internalType": "uint256",
+				"name": "eventId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
 				"name": "ticketsBought",
 				"type": "uint256"
 			},
@@ -347,6 +614,11 @@
 				"internalType": "uint256",
 				"name": "endSales",
 				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "eventPast",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -377,6 +649,25 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_eventId",
+				"type": "uint256"
+			}
+		],
+		"name": "isEventOn",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "name",
 		"outputs": [
@@ -384,6 +675,83 @@
 				"internalType": "string",
 				"name": "",
 				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "numberOfEvents",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "organisedEvents",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "creator",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "metadata",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "eventId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "ticketsBought",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "max_ticket",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "ticket_price",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "startTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "endSales",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "eventPast",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -556,16 +924,16 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "_eventId",
 				"type": "uint256"
 			}
 		],
-		"name": "tokenIdToURI",
+		"name": "ticketsSold",
 		"outputs": [
 			{
-				"internalType": "string",
+				"internalType": "uint256",
 				"name": "",
-				"type": "string"
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -645,6 +1013,25 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "usersTokens",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
 			}
 		],
 		"stateMutability": "view",

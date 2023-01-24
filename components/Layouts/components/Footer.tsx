@@ -16,9 +16,8 @@ const Footer = (props: Props) => {
             <span className='text-orange font-semibold'>MA</span>
           </h3>
           <p className='text-gray-600 text-xs'>
-          The One Stop Spot to manage all your events
-          Book for any events, create and manage your events,
-          Save your your gallery to the IPFS
+            The One Stop Spot to manage all your events Book for any events,
+            create and manage your events, Save your your gallery to the IPFS
           </p>
         </div>
         <div className='w-full -mt-1'>
@@ -63,8 +62,7 @@ const Footer = (props: Props) => {
             <span className='text-orange font-semibold'>MA</span>
           </h3>
           <p className='text-gray-600 text-xs text-center'>
-            It is a long established fact that a reader will be distracted a
-            page when looking at its layout.
+            The first and best web3 event management portal...
           </p>
         </div>
         <div className='flex flex-row justify-evenly space-x-2'>

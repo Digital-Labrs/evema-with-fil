@@ -20,8 +20,8 @@ const Events = ({ events }: { events: any[] }) => {
         </Link>
       </div>
       <SimpleGrid columns={[1, 2, 3]} spacing='5'>
-        {events?.map((event) => (
-          <div key={event?.id} className='w-[95%] mx-auto'>
+        {events?.map((event, idx) => (
+          <div key={idx + 'hg'} className='w-[95%] mx-auto'>
             <EventsComponent event={event} />
           </div>
         ))}
