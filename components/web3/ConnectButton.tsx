@@ -51,7 +51,7 @@ function ConnectButton() {
         </MenuList>
       </Menu>
 
-      {client && (
+      {client && client.chainId !== null && (
         <SwitchNetworkModal
           onClose={Close}
           isOpen={!GetSupportedNetworks().includes(client.chainId)}

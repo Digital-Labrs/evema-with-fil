@@ -9,21 +9,24 @@ const Web3Context: any = createContext({
   client: null,
   connectWallet: null,
   switchNetworks: null,
+  loading: null,
 });
 export const useWeb3 = () => {
   return useContext(Web3Context);
 };
 
 export default function Web3ContextProvider({ children }: { children: any }) {
-  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [client, setClient] = useState(false);
 
   //switch metamask network here
   async function switchNetworks(network: any) {
+    setLoading(true);
     let connection_data: {} = await switchWeb3Network(network);
     if (connection_data) {
       setClient({ ...connection_data, ...network });
     }
+    setLoading(false);
   }
 
   //connect to metamask here
@@ -60,7 +63,9 @@ export default function Web3ContextProvider({ children }: { children: any }) {
   }, []);
 
   return (
-    <Web3Context.Provider value={{ client, connectWallet, switchNetworks }}>
+    <Web3Context.Provider
+      value={{ client, loading, connectWallet, switchNetworks }}
+    >
       {children}
     </Web3Context.Provider>
   );

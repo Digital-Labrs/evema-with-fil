@@ -7,6 +7,7 @@ import MainLayout from '../components/Layouts/MainLayout';
 import WrapContent from '../components/Layouts/components/WrapContent';
 import NoWalletAlert from '../components/Alerts/NoWalletAlert';
 import TicketsGrid from '../components/Tickets/TicketsGrid';
+import LoadingSpinner from '../components/Alerts/LoadingSpinner';
 
 // Replace with your Alchemy API key:
 const apiKey = process.env.NEXT_PUBLIC_ALCHEMY_KEY;
@@ -16,15 +17,19 @@ const axiosURL = `${baseURL}`;
 function MyTickets() {
   const { client }: any = useWeb3();
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getNFTS = useCallback(async () => {
     if (!client) return;
+    setLoading(true);
     try {
       let ct = await getSignedContract(client.chainId);
       let token = await ct.usersTokens(client.address);
       setData(token);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   }, [client]);
 
@@ -46,13 +51,14 @@ function MyTickets() {
           </Text>
         </Box>
         {!client && <NoWalletAlert />}
-        {client && <TicketsGrid nft={data} />}
-        {data && data.length === 0 && (
+        {client && !loading && <TicketsGrid nft={data} />}
+        {!loading && data && data.length === 0 && (
           <Center flexDir='column' p='5' gap='3'>
             <Icon as={FaExclamation} fontSize='30px' />
             <Text fontSize='lg'>Wow, So much empty!</Text>
           </Center>
         )}
+        {loading && <LoadingSpinner />}
       </WrapContent>
     </MainLayout>
   );
