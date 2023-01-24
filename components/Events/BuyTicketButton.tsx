@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { getSignedContract } from '../../metamaskFunctions';
 import { useWeb3 } from '../../context/Web3Context';
+import { NETWORKS } from '../../config/networks';
 
 function BuyTicketButton({ id, price, chain }: any) {
   const [loading, setLoading] = useState(false);
@@ -43,7 +44,21 @@ function BuyTicketButton({ id, price, chain }: any) {
 
       {client && client.chainId !== chain && (
         <Text>
-          You are connected to <br /> the wrong network.
+          You are connected to{' '}
+          {client.chainId === NETWORKS.fil_testnet.chainId ? (
+            <b>Filecoin</b>
+          ) : (
+            <b>Mumbai</b>
+          )}{' '}
+          network.
+          <br />
+          Switch to{' '}
+          {chain === NETWORKS.fil_testnet.chainId ? (
+            <b>Filecoin</b>
+          ) : (
+            <b>Mumbai</b>
+          )}{' '}
+          to buy tickets for this event
           <br />
           <Button
             my='3'
