@@ -4,12 +4,10 @@ import { NETWORKS as SUPPORTED_NETWORKS } from '../../config/networks';
 import SwitchNetworkModal from './SwitchNetworkModal';
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 import { FaChevronDown } from 'react-icons/fa';
-import { AiOutlineLogout } from 'react-icons/ai';
 import { useWeb3 } from '../../context/Web3Context';
 
 function ConnectButton() {
-  const { connectWallet, client }: any = useWeb3();
-  function disconnectWallet() {}
+  const { connectWallet, client, loading }: any = useWeb3();
 
   function Close() {
     return null;
@@ -51,7 +49,7 @@ function ConnectButton() {
         </MenuList>
       </Menu>
 
-      {client && client.chainId !== null && (
+      {!loading && client && client.chainId !== undefined && (
         <SwitchNetworkModal
           onClose={Close}
           isOpen={!GetSupportedNetworks().includes(client.chainId)}

@@ -162,7 +162,7 @@ function SingleEvent(props: any) {
 
             {/* end of left side */}
             <Stack spacing='5' w={['full', 'full', '60%', '65%']}>
-              <Box h='300px' pos='relative'>
+              <Box h='300px' pos='relative' zIndex='-1'>
                 <Badge
                   p='2'
                   pos='absolute'
