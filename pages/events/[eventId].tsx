@@ -173,11 +173,12 @@ function SingleEvent(props: any) {
                 >
                   {data.category}
                 </Badge>
-
                 <ProgressiveImage src={data.image} placeholder='tiny-image.jpg'>
                   {(src, loading) => {
                     return loading ? (
                       <Image
+                        pos='relative'
+                        zIndex='-1'
                         alt={''}
                         className='progressive-image'
                         src={'/images/placeholder.png'}
@@ -187,6 +188,8 @@ function SingleEvent(props: any) {
                       />
                     ) : (
                       <Image
+                        pos='relative'
+                        zIndex='-1'
                         alt={data.title}
                         className='progressive-image'
                         src={src}

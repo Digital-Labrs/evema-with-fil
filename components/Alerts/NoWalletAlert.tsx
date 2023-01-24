@@ -4,6 +4,7 @@ import {
   AlertDescription,
   AlertIcon,
   AlertTitle,
+  Center,
 } from '@chakra-ui/react';
 import ConnectButton from '../web3/ConnectButton';
 
@@ -23,8 +24,10 @@ function NoWalletAlert() {
         Wallet not connected!
       </AlertTitle>
       <AlertDescription maxWidth='sm'>
-        You must connect to metamask to access this page.
-        <ConnectButton />
+        <Center flexDir='column'>
+          You must connect to metamask to access this page.
+          <ConnectButton />
+        </Center>
       </AlertDescription>
     </Alert>
   );

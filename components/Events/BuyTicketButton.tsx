@@ -41,7 +41,7 @@ function BuyTicketButton({ id, price, chain }: any) {
         Buy Ticket
       </Button>
 
-      {client.chainId !== chain && (
+      {client && client.chainId !== chain && (
         <Text>
           You are connected to <br /> the wrong network.
           <br />

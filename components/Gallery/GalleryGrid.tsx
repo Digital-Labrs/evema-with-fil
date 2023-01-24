@@ -1,7 +1,7 @@
 import { Box, HStack, Image, SimpleGrid, Stack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { FiMapPin } from 'react-icons/fi';
-import { mockTickets } from '../mockData';
+import { mockTickets } from '../../mockData';
 
 function GalleryGrid() {
   return (
