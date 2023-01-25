@@ -20,23 +20,23 @@ import { FiPhoneCall } from 'react-icons/fi';
 
 const Footer = () => {
   return (
-    <Box bg={'gray.50'} color={'gray.700'} maxW='100vw'>
+    <Box bg={'gray.50'} color={'gray.700'} maxW='100vw' className='text-sm'>
       <Container as={Stack} maxW={'container.lg'} py={10} px='8'>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 2, lg: 4 }} spacing={5}>
           <Stack align={'flex-start'}>
-            <ListHeader>
-              <h3 className='flex-1  font-semibold pb-2'>
-                <span className='text-primary font-semibold'>EVE</span>
-                <span className='text-orange font-semibold'>MA</span>
-              </h3>
-            </ListHeader>
-            <div className='w-full'>
-              <Text fontSize='lg'>
-                The first and best web3 event booking
-                <br /> & ticketing system, powered by IPFS!
+            <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
+              <span className='text-primary font-semibold'>EVE</span>
+              <span className='text-orange font-semibold'>MA</span>
+            </Text>
+
+            <Box>
+              <Text className='text-sm'>
+                The first and best web3 event booking & ticketing system,
+                powered by IPFS!
               </Text>
-            </div>
+            </Box>
           </Stack>
+
           <Stack align={'flex-start'}>
             <ListHeader>Menu</ListHeader>
             <Link href={'/create'}>Create Event</Link>
@@ -53,7 +53,7 @@ const Footer = () => {
 
           <Stack align={'flex-start'}>
             <ListHeader>Contact</ListHeader>
-            <Box fontSize={'lg'}>
+            <Box className='text-sm'>
               <HStack gap='2'>
                 <SlLocationPin />
 

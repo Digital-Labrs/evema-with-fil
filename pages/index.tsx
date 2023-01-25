@@ -11,7 +11,6 @@ const IndexPage = () => {
   return (
     <MainLayout title='Evema | Decentralized events booking & ticketing system'>
       <section>
-        
         <div className=''>
           <section className='bg-white pb-8 lg:pb-16'>
             <Banner />
@@ -27,7 +26,6 @@ const IndexPage = () => {
             <Newsletter />
           </section>
         </div>
-        
       </section>
     </MainLayout>
   );

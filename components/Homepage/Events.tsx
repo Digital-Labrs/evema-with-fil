@@ -11,7 +11,7 @@ const Events = ({ events }: { events: any[] }) => {
     <div className=' w-full px-2 lg:px-0 md:max-w-[90%] lg:max-w-[80%] xl:max-w-[65%] mx-auto mt-4'>
       <div className='flex items-center justify-between px-1 py-5'>
         {/* <p className='capitalize font-bold text-sm md:text-base text-black'></p> */}
-        <Text as='h2' fontSize='3xl'>
+        <Text as='h2' fontSize='2xl'>
           Popular Events
         </Text>
         <Link href='/' passHref>

@@ -29,15 +29,15 @@ const HowItWorks = () => {
               rounded='xl'
               className='flex flex-col items-center bg-white drop-shadow-md p-3 md:p-5 h-full space-y-1'
             >
-              <Box fontSize='30px' className='bg-orange p-4 rounded-full'>
+              <Box fontSize='30px' className='bg-orange p-2 rounded-full'>
                 <MdOutlinePersonOutline className='text-white' />
               </Box>
 
-              <Text as='h3' fontWeight='bold' fontSize='xl'>
+              <Text as='h3' fontWeight='bold' fontSize='lg'>
                 Connect Wallet
               </Text>
 
-              <Text className='text-lg text-center'>
+              <Text className='text-md text-center'>
                 Firstly you have to connect your wallet to the DAPP
               </Text>
             </Box>
@@ -45,15 +45,15 @@ const HowItWorks = () => {
               rounded='xl'
               className='flex flex-col items-center bg-white drop-shadow-md p-3 md:p-5 h-full space-y-1'
             >
-              <Box fontSize='30px' className='bg-primary p-4 rounded-full'>
+              <Box fontSize='30px' className='bg-primary p-2 rounded-full'>
                 <MdWorkOutline className='text-white' />
               </Box>
               <Link href='/events'>
-                <Text as='h3' fontWeight='bold' fontSize='xl'>
+                <Text as='h3' fontWeight='bold' fontSize='lg'>
                   Search for Event
                 </Text>
               </Link>
-              <Text className='text-lg text-center'>
+              <Text className='text-md text-center'>
                 Search for an Event in your Area or specific event
               </Text>
             </Box>
@@ -61,7 +61,7 @@ const HowItWorks = () => {
               rounded='xl'
               className='flex flex-col items-center bg-white drop-shadow-md p-3  md:p-5 h-full space-y-1'
             >
-              <Box fontSize='30px' className='bg-[#0CA789] p-4 rounded-full'>
+              <Box fontSize='30px' className='bg-[#0CA789] p-2 rounded-full'>
                 <AiOutlineSave className='text-white' />
               </Box>
 
@@ -70,12 +70,12 @@ const HowItWorks = () => {
                   as='h3'
                   fontWeight='bold'
                   textAlign='center'
-                  fontSize='xl'
+                  fontSize='lg'
                 >
                   Pay and Get NFT Ticket
                 </Text>
               </Link>
-              <Text className='text-lg text-center'>
+              <Text className='text-md text-center'>
                 Pay for the event you want and get NFT Ticket
               </Text>
             </Box>

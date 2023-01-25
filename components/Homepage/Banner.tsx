@@ -19,8 +19,8 @@ const Banner = (props: Props) => {
     <Center
       flexDir={'column'}
       textAlign={'center'}
-      // backgroundColor={'#1F3578'}
-      backgroundColor={'blackAlpha.800'}
+      backgroundColor={'#1F3578'}
+      // backgroundColor={'blackAlpha.800'}
       minHeight='80vh'
       bgImg={'/images/bannerbackground.png'}
       bgRepeat='no-repeat'
