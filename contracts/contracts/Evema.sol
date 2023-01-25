@@ -135,7 +135,7 @@ contract Evema is Ownable, ERC721URIStorage{
     function getByCategory(string memory _category) public view returns(EventData[] memory ){
         uint i = 0;
         uint arrayCount = 0;
-        EventData[] memory newCategory;
+	EventData[] memory newCategory = new EventData[](events.length);
 
         for (; i < events.length; i++){
             EventData memory currentEvent = events[i];
