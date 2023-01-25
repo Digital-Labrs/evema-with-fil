@@ -5,17 +5,19 @@ import { Toaster } from 'react-hot-toast';
 import AppContextProvider from '../context/AppContext';
 import Web3ContextProvider from '../context/Web3Context';
 
+// import '../scripts/wdyr';
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Web3ContextProvider>
-      <AppContextProvider>
+    <AppContextProvider>
+      <Web3ContextProvider>
         <ChakraProvider>
           <Toaster position='top-right' />
           <CSSReset />
           <Component {...pageProps} />
         </ChakraProvider>
-      </AppContextProvider>
-    </Web3ContextProvider>
+      </Web3ContextProvider>
+    </AppContextProvider>
   );
 }
 export default MyApp;

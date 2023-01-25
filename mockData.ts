@@ -48,41 +48,56 @@ export const categories = [
     id: 1,
     catImage: 'blockchain.png',
     catTitle: 'BlockChain Events',
+    name: 'blockchain'
   },
   {
     id: 2,
     catImage: 'summits.png',
     catTitle: 'Summits',
+    name: 'summit'
+
   },
   {
     id: 3,
     catImage: 'music.png',
     catTitle: 'Music Events',
+    name: 'music'
+
   },
   {
     id: 4,
     catImage: 'concerts.png',
     catTitle: 'Concerts',
+    name: 'concerts'
+
   },
   {
     id: 5,
     catImage: 'social.png',
     catTitle: 'Social Events',
+    name: 'social'
+
   },
   {
     id: 6,
     catImage: 'audition.png',
     catTitle: 'Open Mic Auditons',
+    name: 'audition'
+
   },
   {
     id: 7,
     catImage: 'conference.png',
     catTitle: 'Conferences',
+    name: 'conference'
+
   },
   {
     id: 8,
     catImage: 'hackathons.png',
     catTitle: 'Hackathons',
+    name: 'hackathon'
+
   },
 ];
 

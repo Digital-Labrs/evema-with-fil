@@ -168,7 +168,7 @@ function CreateEventForm({ submitMetadata }: any) {
               <FormLabel>Category</FormLabel>
               <Select name='category'>
                 {categories?.map((category) => (
-                  <option key={category.id} value={category.catTitle}>
+                  <option key={category.id} value={category.name}>
                     {category.catTitle}
                   </option>
                 ))}

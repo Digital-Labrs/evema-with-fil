@@ -1,7 +1,7 @@
 import mumbaiABI from './evema.json'
 import filABI from './evemafil.json'
 
-export const NETWORKS: any = {
+export const NETWORKS = {
     polygon_mumbai: {
         ca: "0xc3a06FbB1477dE3bC24a75A1807151d43eC6A913",
         abi: mumbaiABI,

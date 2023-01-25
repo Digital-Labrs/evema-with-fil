@@ -18,7 +18,8 @@ function Create() {
         data.startdate,
         data.enddate,
         data.price,
-        hash
+        hash,
+        data.category
       );
       console.log('res---------', res);
 

@@ -1,4 +1,5 @@
 import { Box, SimpleGrid } from '@chakra-ui/react';
+import Link from 'next/link';
 import React from 'react';
 import { categories } from '../../mockData';
 
@@ -11,6 +12,8 @@ const Category = (props: Props) => {
       <SimpleGrid columns={[1, 2, 3, 4]} spacing='8'>
         {categories?.map((category) => (
           <Box
+            as={Link}
+            href={`/category/${category.name}`}
             textAlign={'center'}
             key={category.id}
             bgImg={'/images/category/' + category.catImage}
@@ -22,6 +25,8 @@ const Category = (props: Props) => {
             fontWeight={'bold'}
             bgColor='rgba(0,0,0,0.5)'
             bgBlendMode='darken'
+            rounded='xl'
+            shadow='base'
           >
             {category.catTitle}
           </Box>

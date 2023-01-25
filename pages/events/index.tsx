@@ -21,18 +21,15 @@ function Events() {
             {events &&
               events.length !== 0 &&
               events.map((event: any) => (
-                <div
-                  key={BigNumber.from(event.eventId).toNumber()}
-                  className='w-[95%] mx-auto'
-                >
+                <div key={BigNumber.from(event.eventId).toNumber()}>
                   <EventsComponent event={event} />
                 </div>
               ))}
           </SimpleGrid>
           {events && events.length === 0 && (
             <Center flexDir='column' p='5' gap='3'>
-              <Icon as={FaExclamation} fontSize='30px' />
-              <Text fontSize='lg'>Wow, Such empty!</Text>
+              <Icon as={FaExclamation} fontSize='80px' />
+              <Text fontSize='xl'>Wow, Such empty!</Text>
             </Center>
           )}
         </Box>

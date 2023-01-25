@@ -27,7 +27,7 @@ const Header = (props: Props) => {
           </h2>
         </Link>
         <div className='flex flex-row space-x-3'>
-          <div className='hidden sm:flex items-center sm:space-x-4 text-sm space-x-5'>
+          <div className='hidden md:flex items-center sm:space-x-4 space-x-5'>
             <Link href='/'>Home</Link>
             <Link href='/events'>All Events</Link>
             <Link href='/create'>Create Event</Link>
@@ -36,7 +36,7 @@ const Header = (props: Props) => {
           </div>
 
           <ConnectButton />
-          <Box className='sm:hidden duration-300 ease-in text-orange'>
+          <Box className='md:hidden sm:block duration-300 ease-in text-orange'>
             <IconButton
               pt='2'
               aria-label='mobile-nav'

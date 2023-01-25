@@ -41,7 +41,7 @@ export default function AppContextProvider({ children }: { children: any }) {
       process.env.NEXT_PUBLIC_ALCHEMY_KEY;
 
     try {
-      const provider = new ethers.providers.JsonRpcProvider(rpc);
+      const provider = new ethers.providers.StaticJsonRpcProvider(rpc);
       // @ts-ignore
       let ca = NETWORKS.polygon_mumbai.ca;
       // @ts-ignore
@@ -57,7 +57,7 @@ export default function AppContextProvider({ children }: { children: any }) {
   async function GetAllFilecoinEvents() {
     let rpc = 'https://api.hyperspace.node.glif.io';
     try {
-      const provider = new ethers.providers.JsonRpcProvider(rpc);
+      const provider = new ethers.providers.StaticJsonRpcProvider(rpc);
       // @ts-ignore
       let ca = NETWORKS.fil_testnet.ca;
       // @ts-ignore

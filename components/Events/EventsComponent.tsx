@@ -57,6 +57,7 @@ const EventsComponent = ({ event }: { event: any }) => {
       bgBlendMode='darken'
       py='5'
       justifyContent={'center'}
+      rounded='xl'
     >
       <Text as='h2' fontSize='lg' textTransform={'uppercase'}>
         {data.title}

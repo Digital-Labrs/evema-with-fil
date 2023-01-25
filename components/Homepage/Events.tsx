@@ -10,13 +10,12 @@ const Events = ({ events }: { events: any[] }) => {
   return (
     <div className=' w-full px-2 lg:px-0 md:max-w-[90%] lg:max-w-[80%] xl:max-w-[65%] mx-auto mt-4'>
       <div className='flex items-center justify-between px-1 py-5'>
-        <p className='capitalize font-bold text-sm md:text-base text-black'>
-          CHECK OUT THIS POPULAR EVENTS
-        </p>
+        {/* <p className='capitalize font-bold text-sm md:text-base text-black'></p> */}
+        <Text as='h2' fontSize='3xl'>
+          Popular Events
+        </Text>
         <Link href='/' passHref>
-          <p className='text-xs md:text-sm font-medium text-gray-500 capitalize'>
-            View all
-          </p>
+          <p className='capitalize'>View all</p>
         </Link>
       </div>
       <SimpleGrid columns={[1, 2, 3]} spacing='5'>

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Josefin+Sans:wght@400;500&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
 
+*{
+  scroll-behavior: smooth !important;
+}
+
 .truncate-line-clamp {
   display: -webkit-box;
   -webkit-line-clamp: 2;
