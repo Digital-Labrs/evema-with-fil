@@ -43,12 +43,15 @@ const Ticket = ({ data }: any) => {
     }
   };
 
-  const getNFTHash = useCallback(async (data: any) => {
-    let res = await getSignedContract(client.chainId).tokenURI(
-      BigNumber.from(data).toNumber()
-    );
-    fetchMetadata(res);
-  }, []);
+  const getNFTHash = useCallback(
+    async (data: any) => {
+      let res = await getSignedContract(client.chainId).tokenURI(
+        BigNumber.from(data).toNumber()
+      );
+      fetchMetadata(res);
+    },
+    [client.chainId]
+  );
 
   useEffect(() => {
     getNFTHash(data);
