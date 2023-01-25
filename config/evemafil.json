@@ -165,6 +165,11 @@
 						"type": "string"
 					},
 					{
+						"internalType": "string",
+						"name": "category",
+						"type": "string"
+					},
+					{
 						"internalType": "uint256",
 						"name": "eventId",
 						"type": "uint256"
@@ -284,6 +289,11 @@
 				"type": "string"
 			},
 			{
+				"internalType": "string",
+				"name": "category",
+				"type": "string"
+			},
+			{
 				"internalType": "uint256",
 				"name": "eventId",
 				"type": "uint256"
@@ -348,6 +358,11 @@
 				"internalType": "string",
 				"name": "_metadata",
 				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_category",
+				"type": "string"
 			}
 		],
 		"name": "createEvent",
@@ -375,6 +390,11 @@
 					{
 						"internalType": "string",
 						"name": "metadata",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "category",
 						"type": "string"
 					},
 					{
@@ -442,6 +462,11 @@
 				"type": "string"
 			},
 			{
+				"internalType": "string",
+				"name": "category",
+				"type": "string"
+			},
+			{
 				"internalType": "uint256",
 				"name": "eventId",
 				"type": "uint256"
@@ -500,6 +525,11 @@
 					{
 						"internalType": "string",
 						"name": "metadata",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "category",
 						"type": "string"
 					},
 					{
@@ -568,6 +598,77 @@
 	{
 		"inputs": [
 			{
+				"internalType": "string",
+				"name": "_category",
+				"type": "string"
+			}
+		],
+		"name": "getByCategory",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "metadata",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "category",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "eventId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticketsBought",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "max_ticket",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticket_price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endSales",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "eventPast",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Evema.EventData[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
@@ -583,6 +684,11 @@
 			{
 				"internalType": "string",
 				"name": "metadata",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "category",
 				"type": "string"
 			},
 			{
@@ -716,6 +822,11 @@
 			{
 				"internalType": "string",
 				"name": "metadata",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "category",
 				"type": "string"
 			},
 			{
