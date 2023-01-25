@@ -12,7 +12,7 @@ import {
   useColorModeValue,
   HStack,
 } from '@chakra-ui/react';
-import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
+import { FaTwitter, FaYoutube, FaInstagram, FaFacebook } from 'react-icons/fa';
 
 import { AiOutlineMail } from 'react-icons/ai';
 import { SlLocationPin } from 'react-icons/sl';
@@ -94,7 +94,7 @@ const Footer = () => {
               <FaTwitter />
             </SocialButton>
             <SocialButton label={'YouTube'} href={'#'}>
-              <FaYoutube />
+              <FaFacebook />
             </SocialButton>
           </Stack>
         </Container>
