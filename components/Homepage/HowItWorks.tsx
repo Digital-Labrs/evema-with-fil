@@ -6,10 +6,10 @@ import WrapContent from '../Layouts/components/WrapContent';
 
 const HowItWorks = () => {
   return (
-    <Box id='howitworks' pt='40px'>
+    <Box id='howitworks' pt='30px'>
       <WrapContent>
         <Stack px='5' m='auto' alignItems={'center'} py='10'>
-          <Text as='h2' fontSize='3xl'>
+          <Text as='h1' fontSize='3xl' fontWeight='bold'>
             How it works
           </Text>
           <Text
@@ -48,7 +48,7 @@ const HowItWorks = () => {
               <Box fontSize='30px' className='bg-primary p-2 rounded-full'>
                 <MdWorkOutline className='text-white' />
               </Box>
-              <Link href='/events'>
+              <Link href='/#'>
                 <Text as='h3' fontWeight='bold' fontSize='lg'>
                   Search for Event
                 </Text>
@@ -65,7 +65,7 @@ const HowItWorks = () => {
                 <AiOutlineSave className='text-white' />
               </Box>
 
-              <Link href='/my-tickets'>
+              <Link href='/#'>
                 <Text
                   as='h3'
                   fontWeight='bold'
