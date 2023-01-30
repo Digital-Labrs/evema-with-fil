@@ -135,7 +135,7 @@ contract Evema is Ownable, ERC721URIStorage{
     function getByCategory(string memory _category) public view returns(EventData[] memory ){
         uint i = 0;
         uint arrayCount = 0;
-	EventData[] memory newCategory = new EventData[](events.length);
+	    EventData[] memory newCategory = new EventData[](events.length);
 
         for (; i < events.length; i++){
             EventData memory currentEvent = events[i];
@@ -147,5 +147,64 @@ contract Evema is Ownable, ERC721URIStorage{
         }
 
         return newCategory;
+    }
+
+    // Delete event from different memory locations by the creator
+    // This operation contains loops and is expensive
+    // User should be notified
+    function deleteEvent(uint _eventId) external {
+        
+        uint i = 0;
+        uint envIndex = 0;
+        EventData storage _event = getEventByIds[_eventId];
+        require(_event.creator == msg.sender, "Not Authorised");
+        require(_event.ticketsBought == 0,"Tickets already bought");
+
+        // Delete from creatorEvents array
+        for (; i < creatorEvents[msg.sender].length - 1; i++){
+            EventData memory _newEv = creatorEvents[msg.sender][i];
+            if (_newEv.eventId == _eventId){
+                break;
+            }
+        }
+        for (uint index = i; index < creatorEvents[msg.sender].length-1; index++){
+            creatorEvents[msg.sender][index] = creatorEvents[msg.sender][index + 1];
+        }
+        creatorEvents[msg.sender].pop();
+
+        // Delete from general events array
+
+        for (; envIndex < events.length - 1; envIndex++){
+            EventData memory _anotherEv = events[envIndex];
+            if (_anotherEv.eventId == _eventId){
+                break;
+            }
+        }
+
+        for (uint index = envIndex; index < events.length - 1; index++){
+            events[index] = events[index + 1];
+        }
+        events.pop();
+
+        // Delete from getEventsById mapping
+        delete getEventByIds[_eventId];
+    }
+
+    function deleteEventAdmin(uint256 _eventId) onlyOwner external {
+        uint envIndex = 0;
+        // Delete from general events array
+
+        for (; envIndex < events.length - 1; envIndex++){
+            EventData memory _anotherEv = events[envIndex];
+            if (_anotherEv.eventId == _eventId){
+                break;
+            }
+        }
+
+        for (uint index = envIndex; index < events.length - 1; index++){
+            events[index] = events[index + 1];
+        }
+        events.pop();
+
     }
 }
