@@ -32,7 +32,7 @@ contract Evema is Ownable, ERC721URIStorage{
     mapping(uint256 => EventData) public getEventByIds;
     mapping(address => EventData[]) public bookedEvents;
     mapping(address => uint256[]) public userNftTokens;
-    mapping (address => EventData[]) public organisedEvents;
+    mapping (address => EventData[]) public creatorEvents;
 
     event newEventCreated(address indexed creator,uint256 indexed time, uint256 eventId);
     event newTicketBooked(address indexed user, uint256 tokenId, uint256 eventId);
@@ -85,7 +85,7 @@ contract Evema is Ownable, ERC721URIStorage{
 
         getEventByIds[event_count] = _event;
         events.push(_event);
-        organisedEvents[msg.sender].push(_event);
+        creatorEvents[msg.sender].push(_event);
 
         event_count++;
         emit newEventCreated(_event.creator, block.timestamp, _event.eventId);
@@ -113,7 +113,7 @@ contract Evema is Ownable, ERC721URIStorage{
     }
 
     function createdEvents(address _user) view public returns(EventData[] memory){
-        return organisedEvents[_user];
+        return creatorEvents[_user];
     }
 
     function numberOfEvents() public view returns(uint){
