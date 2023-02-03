@@ -16,7 +16,7 @@ function BuyTicketButton({ id, price, chain }: any) {
     setLoading(true);
 
     try {
-      let res = await getSignedContract(client.chainId).bookTickets(id, {
+      let res = await getSignedContract(client.chainId)?.bookTickets(id, {
         value: ethers.utils.parseEther('0.1'),
       });
       alert('Booked, check your NFT ticket in your wallet');
