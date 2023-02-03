@@ -20,7 +20,7 @@ function SingleCategory() {
 
   const fetchItem = useCallback(async () => {
     let Mrpc: string = 'https://polygon-mumbai.g.alchemy.com/v2/' + apiKey;
-    let Frpc: string = 'https://api.hyperspace.node.glif.io';
+    let Frpc: string = 'https://api.hyperspace.node.glif.io/rpc/v1';
 
     const Mprovider = new ethers.providers.JsonRpcProvider(Mrpc);
     let Mca = NETWORKS.polygon_mumbai.ca;

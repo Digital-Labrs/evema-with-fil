@@ -55,7 +55,7 @@ export default function AppContextProvider({ children }: { children: any }) {
     }
   }
   async function GetAllFilecoinEvents() {
-    let rpc = 'https://api.hyperspace.node.glif.io';
+    let rpc = 'https://api.hyperspace.node.glif.io/rpc/v1';
     try {
       const provider = new ethers.providers.StaticJsonRpcProvider(rpc);
       // @ts-ignore

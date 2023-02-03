@@ -44,12 +44,13 @@ const MobileNavbar = ({
           </div>
         </div>
         {/* the side bar tools */}
-        <div className=' flex flex-col text-lg text-white space-y-8 font-semibold'>
+        <div className='flex flex-col text-lg text-white space-y-8 font-semibold'>
           <Link href='/'>Home</Link>
           <Link href='/events'>All Events</Link>
           <Link href='/create'>Create Event</Link>
           <Link href='/gallery'>Gallery</Link>
           <Link href='/my_tickets'>My Tickets</Link>
+          {/* <Link href='/dashboard'>Dashboard</Link> */}
         </div>
       </div>
     </div>

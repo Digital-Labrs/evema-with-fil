@@ -32,7 +32,6 @@ const Ticket = ({ data }: any) => {
       setNFTData(data);
     } catch (error) {
       console.log(error);
-      toast.error('error occurred');
     }
   };
 
@@ -45,7 +44,7 @@ const Ticket = ({ data }: any) => {
 
   const getNFTHash = useCallback(
     async (data: any) => {
-      let res = await getSignedContract(client.chainId).tokenURI(
+      let res = await getSignedContract(client.chainId)?.tokenURI(
         BigNumber.from(data).toNumber()
       );
       fetchMetadata(res);

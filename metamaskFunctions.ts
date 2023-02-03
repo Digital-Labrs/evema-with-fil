@@ -103,6 +103,7 @@ const connectWeb3 = async () => {
 //     return signed;
 // };
 const getSignedContract = (chainId: any) => {
+    if (!chainId) return null
     const current_network: any = Object.values(SUPPORTED_NETWORKS).filter((entry: any) => {
         return entry.chainId === chainId
     })
@@ -130,7 +131,7 @@ const networks = {
             symbol: 'tFIL',
             decimals: 18,
         },
-        rpcUrls: ['https://api.hyperspace.node.glif.io/rpc/v0'],
+        rpcUrls: ['https://api.hyperspace.node.glif.io/rpc/v1'],
         blockExplorerUrls: ['https://hyperspace.filfox.info/en'],
     },
     polygon: {

@@ -125,7 +125,7 @@ function CreateEventForm({ submitMetadata }: any) {
 
     let ref = await submitMetadata(data);
     if (ref) {
-      alert('posted!');
+      alert('posted, confirm in wallet!');
       window.document.forms[0].reset();
       if (barRef.current !== null && barRef.current !== undefined) {
         barRef.current.style.width = `${0}%`;

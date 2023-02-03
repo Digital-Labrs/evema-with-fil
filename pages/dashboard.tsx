@@ -1,20 +1,18 @@
-import { Box, Center, Icon, Text } from '@chakra-ui/react';
+import { Box, Divider, Icon, Text } from '@chakra-ui/react';
 import React, { useCallback, useEffect, useState } from 'react';
-import { FaExclamation } from 'react-icons/fa';
 import { getSignedContract } from '../metamaskFunctions';
 import { useWeb3 } from '../context/Web3Context';
 import MainLayout from '../components/Layouts/MainLayout';
 import WrapContent from '../components/Layouts/components/WrapContent';
-import NoWalletAlert from '../components/Alerts/NoWalletAlert';
-import TicketsGrid from '../components/Tickets/TicketsGrid';
-import LoadingSpinner from '../components/Alerts/LoadingSpinner';
+import MyTickets from '../components/Dashboard/Tickets';
+import MyEvents from '../components/Dashboard/Events';
 
 // Replace with your Alchemy API key:
 const apiKey = process.env.NEXT_PUBLIC_ALCHEMY_KEY;
 const baseURL = `https://polygon-mumbai.g.alchemy.com/v2/${apiKey}`;
 const axiosURL = `${baseURL}`;
 
-function MyTickets() {
+function Dashboard() {
   const { client }: any = useWeb3();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -24,13 +22,8 @@ function MyTickets() {
     setLoading(true);
     try {
       let ct = await getSignedContract(client.chainId);
-      if (ct) {
-        let token = await ct.usersTokens(client.address);
-        setData(token);
-        setLoading(false);
-        return;
-      }
-      setData([]);
+      let token = await ct.usersTokens(client.address);
+      setData(token);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -48,25 +41,29 @@ function MyTickets() {
     <MainLayout title='My tickets on Evema'>
       <WrapContent>
         <Box py='5'>
-          <Text px='2' fontSize='xl' as='h1' className='capitalize py-5'>
-            MY TICKETS
+          <Text
+            px='2'
+            fontSize='2xl'
+            as='h1'
+            fontWeight='bold'
+            className='capitalize py-5'
+            mb='-3'
+          >
+            Dashboard
           </Text>
-          <Text as='span' pl='3' fontStyle={'italic'}>
-            To view NFT on other networks, switch connected network
+          <Text as='span' pl='2'>
+            Here you can manage events and NFT&apos;s you own. You may only
+            delete unbooked events;
           </Text>
         </Box>
-        {!client && <NoWalletAlert />}
-        {client && !loading && data.length > 0 && <TicketsGrid nft={data} />}
-        {!loading && data && data.length === 0 && (
-          <Center flexDir='column' p='5' gap='3'>
-            <Icon as={FaExclamation} fontSize='30px' />
-            <Text fontSize='lg'>Wow, So much empty!</Text>
-          </Center>
-        )}
-        {loading && <LoadingSpinner />}
+        <MyEvents />
+        <Box pt='10'>
+          <Divider />
+        </Box>
+        <MyTickets />
       </WrapContent>
     </MainLayout>
   );
 }
 
-export default MyTickets;
+export default Dashboard;

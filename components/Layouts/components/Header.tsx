@@ -1,16 +1,14 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { Box, Flex, IconButton } from '@chakra-ui/react';
 import { TiThMenu } from 'react-icons/ti';
 import { MdClose } from 'react-icons/md';
 import { useState } from 'react';
 import MobileNavbar from './MobileNavbar';
 import ConnectButton from '../../web3/ConnectButton';
+import DashBoardLink from './DashBoardLink';
 
 type Props = {};
 const Header = (props: Props) => {
-  const router = useRouter();
-
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
@@ -32,7 +30,8 @@ const Header = (props: Props) => {
             <Link href='/events'>All Events</Link>
             <Link href='/create'>Create Event</Link>
             <Link href='/gallery'>Gallery</Link>
-            <Link href='/my_tickets'>My Tickets</Link>
+            <Link href='/my_tickets'>My tickets</Link>
+            {/* <DashBoardLink /> */}
           </div>
 
           <ConnectButton />

@@ -64,7 +64,7 @@ function SingleEvent(props: any) {
     let rpc: string = 'https://polygon-mumbai.g.alchemy.com/v2/' + apiKey;
 
     if (query.chain === '3141') {
-      rpc = 'https://api.hyperspace.node.glif.io';
+      rpc = 'https://api.hyperspace.node.glif.io/rpc/v1';
     }
 
     const current_network: any = Object.values(NETWORKS).filter(
