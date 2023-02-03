@@ -13,7 +13,7 @@ function Create() {
     try {
       let ctx = getSignedContract(client.chainId);
       console.log(data);
-      let res = await ctx.createEvent(
+      let res = await ctx?.createEvent(
         data.seats,
         data.startdate,
         data.enddate,
