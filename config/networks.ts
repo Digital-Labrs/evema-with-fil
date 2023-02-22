@@ -1,5 +1,7 @@
 import mumbaiABI from './evema.json'
 import filABI from './evemafil.json'
+import ftmABI from './evemaftm.json'
+
 
 export const NETWORKS: any = {
     polygon_mumbai: {
@@ -13,6 +15,13 @@ export const NETWORKS: any = {
         abi: filABI,
         chainId: 3141,
         title: 'Filecoin'
+    },
+    ftm_testnet: {
+        ca: "0x9b83F0043135c7322aA689f8284fb6BFcb5dCf9A",
+        abi: ftmABI,
+        chainId: 4002,
+        title: 'Fantom'
     }
+    
 }
 
