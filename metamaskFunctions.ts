@@ -65,12 +65,13 @@ const checkConnection = async (setClient: any) => {
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         let chainId = parseInt(ethereum.chainId)
         const current_network: any = FIND_NETWORK(chainId)
+
         if (accounts.length > 0) {
             return setClient({
                 isConnected: true,
                 address: accounts[0],
                 network: parseInt(ethereum.chainId),
-                ...current_network[0]
+                ...current_network
             });
         }
         return false;
