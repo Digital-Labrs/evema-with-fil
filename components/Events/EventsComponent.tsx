@@ -30,7 +30,6 @@ const EventsComponent = ({ event }: { event: any }) => {
           Accept: 'text/plain',
         },
       });
-      console.log(data);
 
       setData(data);
     } catch (error) {

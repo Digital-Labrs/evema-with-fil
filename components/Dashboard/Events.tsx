@@ -36,21 +36,15 @@ function MyEvents() {
       let Mevents = await Mct.bookedEvents(client.address, 1);
       let Fevents = await Fct.bookedEvents(client.address, 1);
 
-      console.log(Mevents);
-      console.log(Fevents);
-
       return setEvents(() => {
         return { loading: false, events: [...Mevents, ...Fevents] };
       });
     } catch (error) {
-      console.log(error);
-
       return setEvents((prev) => {
         return { loading: false, events: prev.events };
       });
     }
-  }, []);
-  console.log(events);
+  }, [client.address]);
 
   useEffect(() => {
     if (client) {

@@ -36,9 +36,6 @@ function SingleCategory() {
       let Mevents = await Mct.getByCategory(category);
       let Fevents = await Fct.getByCategory(category);
 
-      console.log(Mevents);
-      console.log(Fevents);
-
       return setEvents(() => {
         return { loading: false, events: [...Mevents, ...Fevents] };
       });
@@ -50,7 +47,6 @@ function SingleCategory() {
       });
     }
   }, [category]);
-  console.log(events);
 
   useEffect(() => {
     if (category) {

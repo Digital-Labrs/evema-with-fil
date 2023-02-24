@@ -12,7 +12,7 @@ function Create() {
   const submitEventToBlockChain = async (hash: string, data: any) => {
     try {
       let ctx = getSignedContract(client.network);
-      console.log(ctx);
+
       let res = await ctx?.createEvent(
         data.seats,
         data.startdate,
@@ -21,7 +21,6 @@ function Create() {
         hash,
         data.category
       );
-      console.log('res---------', res);
       toast.success('Event submitted to blockchain, transaction in progress');
       return 'Done';
     } catch (error) {

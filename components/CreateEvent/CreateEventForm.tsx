@@ -106,7 +106,6 @@ function CreateEventForm({ submitMetadata }: any) {
     } = event.target;
     let SD = new Date(startdate.value);
     let ED = new Date(enddate.value);
-    console.log(time.value);
 
     const data = {
       id: uuid(),
