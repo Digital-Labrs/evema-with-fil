@@ -20,7 +20,7 @@ function MyTickets() {
     if (!client) return;
     setLoading(true);
     try {
-      let ct = await getSignedContract(client.chainId);
+      let ct = await getSignedContract(client.network);
       if (!ct) return;
 
       let token = await ct.usersTokens(client.address);

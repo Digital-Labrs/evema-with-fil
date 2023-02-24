@@ -5,6 +5,15 @@ import { toast } from 'react-hot-toast';
 const matic_chain_id = 80001;
 const fil_chain_id = 3141;
 
+function FIND_NETWORK(chain: number | string) {
+    const current_network: any = Object.values(SUPPORTED_NETWORKS).filter(
+        (entry: any) => {
+            return entry.chainId === chain;
+        }
+    );
+    return current_network[0]
+}
+
 const switchWeb3Network = async (network: string) => {
     const { ethereum }: any = window;
     const accounts = await ethereum.request({ method: 'eth_accounts' });
@@ -29,10 +38,18 @@ const switchWeb3Network = async (network: string) => {
                     ],
                 });
             } catch (addError) {
-                return toast.error('cannot add or switch networks, please add manually')
+                toast.error('cannot add or switch networks, please add manually')
+                return null
             }
         }
+
+        if (switchError.code === 4001) {
+            toast.error('cannot add or switch networks, please accept request')
+            return null
+
+        }
     }
+
     return {
         isConnected: true,
         address: accounts[0],
@@ -47,9 +64,7 @@ const checkConnection = async (setClient: any) => {
     if (ethereum) {
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         let chainId = parseInt(ethereum.chainId)
-        const current_network: any = Object.values(SUPPORTED_NETWORKS).filter((entry: any) => {
-            return entry.chainId === chainId
-        })
+        const current_network: any = FIND_NETWORK(chainId)
         if (accounts.length > 0) {
             return setClient({
                 isConnected: true,
@@ -65,6 +80,7 @@ const checkConnection = async (setClient: any) => {
 };
 
 const connectWeb3 = async () => {
+
     try {
         const { ethereum }: any = window;
 
@@ -104,22 +120,26 @@ const connectWeb3 = async () => {
 // };
 const getSignedContract = (chainId: any) => {
     if (!chainId) return null
-    const current_network: any = Object.values(SUPPORTED_NETWORKS).filter((entry: any) => {
-        return entry.chainId === chainId
-    })
+    // const current_network: any = Object.values(SUPPORTED_NETWORKS).filter((entry: any) => {
+    //     return entry.chainId === chainId
+    // })
+
+    const current_network: any = FIND_NETWORK(chainId)
     const { ethereum }: any = window;
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
 
     // @ts-ignore
-    let ca = current_network[0].ca;
+    let ca = current_network.ca;
     // @ts-ignore
-    let abi = current_network[0].abi;
+    let abi = current_network.abi;
 
     const ct = new ethers.Contract(ca, abi, provider);
     let signed = ct.connect(signer);
 
     return signed;
+
+
 };
 
 const networks = {
@@ -179,5 +199,6 @@ export {
     fil_chain_id,
     matic_chain_id,
     networks,
-    switchWeb3Network
+    switchWeb3Network,
+    FIND_NETWORK
 };

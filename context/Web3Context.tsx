@@ -19,7 +19,7 @@ export default function Web3ContextProvider({ children }: { children: any }) {
 
   //switch metamask network here
   async function switchNetworks(network: any) {
-    let connection_data: {} = await switchWeb3Network(network);
+    let connection_data: any = await switchWeb3Network(network);
     if (connection_data) {
       setClient({ ...connection_data, ...network });
     }

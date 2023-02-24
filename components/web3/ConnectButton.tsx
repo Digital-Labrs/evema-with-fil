@@ -19,6 +19,7 @@ function ConnectButton() {
   function GetSupportedNetworks() {
     let temparr: any[] = [];
     Object.keys(SUPPORTED_NETWORKS).forEach((key) =>
+      //@ts-ignore
       temparr.push(SUPPORTED_NETWORKS[key].chainId)
     );
     return temparr;
@@ -49,10 +50,10 @@ function ConnectButton() {
         </MenuList>
       </Menu>
 
-      {!loading && client && client.chainId !== undefined && (
+      {!loading && client && client.network !== undefined && (
         <SwitchNetworkModal
           onClose={Close}
-          isOpen={!GetSupportedNetworks().includes(client.chainId)}
+          isOpen={!GetSupportedNetworks().includes(client.network)}
         />
       )}
     </>

@@ -21,7 +21,7 @@ function Dashboard() {
     if (!client) return;
     setLoading(true);
     try {
-      let ct = await getSignedContract(client.chainId);
+      let ct = await getSignedContract(client.network);
       let token = await ct?.usersTokens(client.address);
       setData(token);
       setLoading(false);

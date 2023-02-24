@@ -22,7 +22,7 @@ const Events = ({ events }: { events: any[] }) => {
       <SimpleGrid columns={[1, 2, 3]} spacing='5'>
         {events?.map((event, idx) => (
           <div key={idx + 'hg'} className='w-[95%] mx-auto'>
-            <EventsComponent event={event} />
+            <EventsComponent key={idx + 'hg'} event={event} />
           </div>
         ))}
       </SimpleGrid>

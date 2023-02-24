@@ -6,7 +6,8 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { NETWORKS } from '../config/networks';
+import { NetData, NETWORKS } from '../config/networks';
+import { FIND_NETWORK } from '../metamaskFunctions';
 
 const AppContext: any = createContext({
   events: null,
@@ -22,49 +23,32 @@ export default function AppContextProvider({ children }: { children: any }) {
   const [events, setEvents] = useState<any[]>([]);
 
   const GetAllEvents = useCallback(async () => {
-    let fe: any[] = await GetAllFilecoinEvents();
-    let me: any[] = await GetAllMaticEvents();
+    let filecoinEvents: any[] = await GetAllChainEvents(NETWORKS.fil_testnet);
+    let mumbaiEvents: any[] = await GetAllChainEvents(NETWORKS.polygon_mumbai);
+    let fantomEvents: any[] = await GetAllChainEvents(NETWORKS.ftm_testnet);
+
     let newArr: any[] = [];
-    if (fe) {
-      newArr = [...fe];
+    if (filecoinEvents) {
+      newArr = [...filecoinEvents];
     }
-    if (me) {
-      newArr = newArr.concat(me);
+    if (mumbaiEvents) {
+      newArr = newArr.concat(mumbaiEvents);
+    }
+    if (fantomEvents) {
+      newArr = newArr.concat(fantomEvents);
     }
 
     return setEvents(newArr);
   }, []);
 
-  async function GetAllMaticEvents() {
-    let rpc =
-      'https://polygon-mumbai.g.alchemy.com/v2/' +
-      process.env.NEXT_PUBLIC_ALCHEMY_KEY;
-
+  async function GetAllChainEvents(network_chain: NetData) {
     try {
-      const provider = new ethers.providers.StaticJsonRpcProvider(rpc);
-      // @ts-ignore
-      let ca = NETWORKS.polygon_mumbai.ca;
-      // @ts-ignore
-      let abi = NETWORKS.polygon_mumbai.abi;
-      const ct = new ethers.Contract(ca, abi, provider);
+      const provider = new ethers.providers.StaticJsonRpcProvider(
+        network_chain.rpc
+      );
+      let network = FIND_NETWORK(network_chain.chainId); //chain id
+      const ct = new ethers.Contract(network.ca, network.abi, provider);
       let d = await ct.allEvents();
-
-      return d;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  async function GetAllFilecoinEvents() {
-    let rpc = 'https://api.hyperspace.node.glif.io/rpc/v1';
-    try {
-      const provider = new ethers.providers.StaticJsonRpcProvider(rpc);
-      // @ts-ignore
-      let ca = NETWORKS.fil_testnet.ca;
-      // @ts-ignore
-      let abi = NETWORKS.fil_testnet.abi;
-      const ct = new ethers.Contract(ca, abi, provider);
-      let d = await ct.allEvents();
-
       return d;
     } catch (error) {
       console.log(error);
@@ -76,9 +60,7 @@ export default function AppContextProvider({ children }: { children: any }) {
   }, [GetAllEvents]);
 
   return (
-    <AppContext.Provider
-      value={{ events, GetAllFilecoinEvents, GetAllMaticEvents, GetAllEvents }}
-    >
+    <AppContext.Provider value={{ events, GetAllChainEvents, GetAllEvents }}>
       {children}
     </AppContext.Provider>
   );

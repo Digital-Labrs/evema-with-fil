@@ -21,8 +21,8 @@ import BuyTicketButton from '../../components/Events/BuyTicketButton';
 import WrapContent from '../../components/Layouts/components/WrapContent';
 import MainLayout from '../../components/Layouts/MainLayout';
 import { NETWORKS } from '../../config/networks';
-
-const apiKey = process.env.NEXT_PUBLIC_ALCHEMY_KEY;
+import { FIND_NETWORK } from '../../metamaskFunctions';
+import rpcUrls from '../../rpcUrls';
 
 export const formatDate = (date: any) => {
   let d = new Date(BigNumber.from(date).toNumber());
@@ -61,23 +61,26 @@ function SingleEvent(props: any) {
   }, []);
 
   const fetchItem = useCallback(async () => {
-    let rpc: string = 'https://polygon-mumbai.g.alchemy.com/v2/' + apiKey;
+    //default to mumbai
+    let rpc: string = rpcUrls.mumbai;
 
+    //check filecoin
     if (query.chain === '3141') {
-      rpc = 'https://api.hyperspace.node.glif.io/rpc/v1';
+      rpc = rpcUrls.filecoin;
     }
 
-    const current_network: any = Object.values(NETWORKS).filter(
-      (entry: any) => {
-        return entry.chainId === Number(query.chain);
-      }
-    );
+    //check fantom
+    if (query.chain === '4002') {
+      rpc = rpcUrls.fantom;
+    }
+
+    const current_network: any = FIND_NETWORK(Number(query.chain));
 
     const provider = new ethers.providers.JsonRpcProvider(rpc);
     // @ts-ignore
-    let ca = current_network[0].ca;
+    let ca = current_network.ca;
     // @ts-ignore
-    let abi = current_network[0].abi;
+    let abi = current_network.abi;
     const ct = new ethers.Contract(ca, abi, provider);
     let d = await ct.getEventByIds(query.eventId);
     setEvent(d);
@@ -99,7 +102,7 @@ function SingleEvent(props: any) {
               <Box>
                 <Heading
                   color='blue.800'
-                  fontSize={['lg', '2xl', '3xl', '5xl']}
+                  fontSize={['lg', '2xl', '2xl', '4xl']}
                 >
                   {data.title}
                 </Heading>

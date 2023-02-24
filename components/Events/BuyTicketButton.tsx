@@ -16,7 +16,7 @@ function BuyTicketButton({ id, price, chain }: any) {
     setLoading(true);
 
     try {
-      let res = await getSignedContract(client.chainId)?.bookTickets(id, {
+      let res = await getSignedContract(client.network)?.bookTickets(id, {
         value: ethers.utils.parseEther('0.1'),
       });
       alert('Booked, check your NFT ticket in your wallet');
@@ -28,6 +28,30 @@ function BuyTicketButton({ id, price, chain }: any) {
 
     setLoading(false);
   }
+
+  function WHICH_NETWORK() {
+    return client.network === NETWORKS.fil_testnet.chainId ? (
+      <b>Filecoin </b>
+    ) : client.network === NETWORKS.ftm_testnet.chainId ? (
+      <b>Fantom </b>
+    ) : (
+      <b>Mumbai </b>
+    );
+  }
+
+  function FIND_NETWORK() {
+    const current_network: any = Object.values(NETWORKS).filter(
+      (entry: any) => {
+        return entry.chainId === chain;
+      }
+    );
+    if (current_network && current_network.length > 0) {
+      return <b>{current_network[0].title} </b>;
+    } else {
+      return <b></b>;
+    }
+  }
+
   return (
     <Box>
       <Button
@@ -37,27 +61,17 @@ function BuyTicketButton({ id, price, chain }: any) {
         colorScheme='orange'
         color='white'
         size='lg'
-        disabled={client.chainId !== chain}
+        disabled={client.network !== chain}
       >
         Buy Ticket
       </Button>
 
-      {client && client.chainId !== chain && (
+      {client && client.network !== chain && (
         <Text>
-          You are connected to{' '}
-          {client.chainId === NETWORKS.fil_testnet.chainId ? (
-            <b>Filecoin</b>
-          ) : (
-            <b>Mumbai</b>
-          )}{' '}
+          You are connected to {WHICH_NETWORK()}
           network.
           <br />
-          Switch to{' '}
-          {chain === NETWORKS.fil_testnet.chainId ? (
-            <b>Filecoin</b>
-          ) : (
-            <b>Mumbai</b>
-          )}{' '}
+          Switch to {FIND_NETWORK()}
           to buy tickets for this event
           <br />
           <Button

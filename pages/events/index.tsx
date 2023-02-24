@@ -20,8 +20,8 @@ function Events() {
           <SimpleGrid columns={[1, 2, 3]} spacing='5'>
             {events &&
               events.length !== 0 &&
-              events.map((event: any) => (
-                <div key={BigNumber.from(event.eventId).toNumber()}>
+              events.map((event: any, idx: number) => (
+                <div key={idx + 'kk'}>
                   <EventsComponent event={event} />
                 </div>
               ))}

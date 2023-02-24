@@ -30,6 +30,8 @@ const EventsComponent = ({ event }: { event: any }) => {
           Accept: 'text/plain',
         },
       });
+      console.log(data);
+
       setData(data);
     } catch (error) {
       console.log(error);
@@ -67,7 +69,11 @@ const EventsComponent = ({ event }: { event: any }) => {
           {data.desc}
         </Text>
       </Box>
-      <Link href={`/events/${eventId}?chain=${data.chainId}`}>
+      <Link
+        href={`/events/${eventId}?chain=${
+          data.chainId ? data.chainId : '4002'
+        }`}
+      >
         <Button colorScheme='twitter' size='sm' alignSelf={'center'} py='3'>
           Book Now!
         </Button>

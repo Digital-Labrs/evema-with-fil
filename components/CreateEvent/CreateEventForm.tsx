@@ -22,6 +22,7 @@ import { useApp } from '../../context/AppContext';
 import { useWeb3 } from '../../context/Web3Context';
 import MainLayout from '../Layouts/MainLayout';
 import WrapContent from '../Layouts/components/WrapContent';
+import { FIND_NETWORK } from '../../metamaskFunctions';
 
 const pinataSecret: string | undefined =
   process.env.NEXT_PUBLIC_PINATA_API_SECRET;
@@ -120,7 +121,7 @@ function CreateEventForm({ submitMetadata }: any) {
       image: imgHash,
       location: location.value,
       price: price.value,
-      chainId: client.chainId,
+      chainId: client.network,
     };
 
     let ref = await submitMetadata(data);
@@ -284,6 +285,12 @@ function CreateEventForm({ submitMetadata }: any) {
               {!client && (
                 <Text color='red.500' as='small' textAlign='right'>
                   *wallet not connected
+                </Text>
+              )}
+              {client && imgHash && (
+                <Text color='green.500' as='small' textAlign='right'>
+                  You are submitting to
+                  <b> {FIND_NETWORK(client.network).title}</b>
                 </Text>
               )}
             </Stack>

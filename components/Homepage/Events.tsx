@@ -4,8 +4,6 @@ import React from 'react';
 import { FaExclamation } from 'react-icons/fa';
 import EventsComponent from '../Events/EventsComponent';
 
-type Props = {};
-
 const Events = ({ events }: { events: any[] }) => {
   return (
     <div className=' w-full px-2 lg:px-0 md:max-w-[90%] lg:max-w-[80%] xl:max-w-[65%] mx-auto mt-4'>
@@ -19,8 +17,8 @@ const Events = ({ events }: { events: any[] }) => {
         </Link>
       </div>
       <SimpleGrid columns={[1, 2, 3]} spacing='5'>
-        {events?.map((event) => (
-          <div key={event?.id} className='w-[95%] mx-auto'>
+        {events?.map((event, idx) => (
+          <div key={idx + 'lo'} className='w-[95%] mx-auto'>
             <EventsComponent event={event} />
           </div>
         ))}
