@@ -38,6 +38,10 @@ export default function AppContextProvider({ children }: { children: any }) {
       newArr = newArr.concat(fantomEvents);
     }
 
+    console.log(filecoinEvents, 'filecoin');
+    console.log(fantomEvents, 'fantomcoin');
+    console.log(mumbaiEvents, 'mumbai');
+
     return setEvents(newArr);
   }, []);
 
